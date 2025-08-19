@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Icon -->
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4a1.png">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --text: #c9d1d9;
+            --accent: #58a6ff;
+            --gradient: linear-gradient(90deg, #ff6ec4, #7873ff);
+        }
+
+        body.light {
+            --bg: #ffffff;
+            --card: #f5f5f5;
+            --text: #111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: background .3s;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            background: var(--card);
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+            max-width: 420px;
+            width: 90%;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 4px solid var(--accent);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: .5rem;
+        }
+
+        .gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social a {
+            display: inline-block;
+            margin: .8rem .5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .social a:hover {
+            text-decoration: underline;
+        }
+
+        #theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* 响应式 */
+        @media(max-width: 500px) {
+            .card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-js"></div>
+
+    <main class="card">
+        <img class="avatar" src="https://avatars.githubusercontent.com/u/YOUR_GITHUB_ID" alt="avatar" />
+        <h1 id="typing">Hi, I'm <span class="gradient">Your Name</span></h1>
+        <p>Front-End Developer & UI Designer</p>
+
+        <div class="social">
+            <a href="https://github.com/YOUR_GITHUB" target="_blank">GitHub</a>
+            <a href="https://twitter.com/YOUR_TWITTER" target="_blank">Twitter</a>
+            <a href="mailto:you@example.com">Email</a>
+        </div>
+
+        <button id="theme-toggle" title="Toggle dark/light">🌗</button>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/particles.min.js"></script>
+    <script>
+        // 粒子背景
+        particlesJS.load('particles-js', 'https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.json', () => { });
+
+        // 打字机效果
+        const txt = "Hi, I'm Your Name".split("");
+        let i = 0;
+        const type = () => {
+            if (i < txt.length) {
+                document.getElementById("typing").innerHTML =
+                    txt.slice(0, ++i).join("") + '<span class="cursor">|</span>';
+                setTimeout(type, 120);
+            }
+        };
+        type();
+
+        // 暗黑/亮色切换
+        const toggle = document.getElementById("theme-toggle");
+        toggle.onclick = () => document.body.classList.toggle("light");
+    </script>
+</body>
+
+</html>
